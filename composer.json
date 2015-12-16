@@ -8,5 +8,10 @@
             "email": "info@danielgelling.nl"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Http\\": "src/"
+        },
+    },
     "require": {}
 }
