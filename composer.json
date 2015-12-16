@@ -1,0 +1,12 @@
+{
+    "name": "daniel/http",
+    "description": "Package with which you can easily perform HTTP requests in PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Gelling",
+            "email": "info@danielgelling.nl"
+        }
+    ],
+    "require": {}
+}
