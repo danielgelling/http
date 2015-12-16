@@ -1,8 +1,8 @@
 <?php
 
-namespace BlockIO;
+namespace Http;
 
-class Http
+class Factory
 {
 	public function __construct($apiKey, $pin, $version)
 	{
