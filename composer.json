@@ -1,5 +1,5 @@
 {
-    "name": "daniel/http",
+    "name": "danielgelling/http",
     "description": "Package with which you can easily perform HTTP requests in PHP",
     "license": "MIT",
     "authors": [
