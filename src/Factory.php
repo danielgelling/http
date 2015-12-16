@@ -4,14 +4,7 @@ namespace Http;
 
 class Factory
 {
-	public function __construct($apiKey, $pin, $version)
-	{
-		$this->apiKey = $apiKey;
-		$this->pin = $pin;
-		$this->version = $version;
-	}
-
-	public function get($url, $params = [])
+	public static function get($url, $params = [])
 	{
 		$curl = curl_init();
 
