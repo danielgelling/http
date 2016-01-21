@@ -16,7 +16,7 @@ class Factory
 			$url .= '&' . $param . '=' . $value;
 		}
 
-		curl_setopt_array($curl, array[
+		curl_setopt_array($curl, [
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_URL => $url,
 		]);
