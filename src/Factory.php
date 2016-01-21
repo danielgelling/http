@@ -26,4 +26,21 @@ class Factory
 
 		return json_decode($response);
 	}
+
+	public static function post($url, $params = [])
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => $url,
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => $params
+		));
+
+		$response = curl_exec($curl);
+		curl_close($curl);
+
+		return json_decode($response);
+	}
 }
