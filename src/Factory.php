@@ -21,11 +21,8 @@ class Factory
 			CURLOPT_URL => $url,
 		));
 
-
-		$response = array_merge(
-			json_decode(curl_exec($curl), true),
-			curl_getinfo($curl)
-		);
+		$response = json_decode(curl_exec($curl));
+		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
 
@@ -43,13 +40,11 @@ class Factory
 		    CURLOPT_POSTFIELDS => $params
 		));
 
-		$response = array_merge(
-			json_decode(curl_exec($curl), true),
-			curl_getinfo($curl)
-		);
+		$response = json_decode(curl_exec($curl));
+		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
 
-		return json_encode(json_decode($response));
+		return json_decode(json_encode($response));
 	}
 }
