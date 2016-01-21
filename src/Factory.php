@@ -22,7 +22,7 @@ class Factory
 		));
 
 		$response = new \stdClass();
-		$response->data = json_decode(curl_exec($curl));
+		$response->response = json_decode(curl_exec($curl));
 		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
@@ -42,7 +42,7 @@ class Factory
 		));
 
 		$response = new \stdClass();
-		$response->data = json_decode(curl_exec($curl));
+		$response->response = json_decode(curl_exec($curl));
 		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
