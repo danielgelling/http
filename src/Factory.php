@@ -21,7 +21,8 @@ class Factory
 			CURLOPT_URL => $url,
 		));
 
-		$response = json_decode(curl_exec($curl));
+		$response = new \stdClass();
+		$response->data = json_decode(curl_exec($curl));
 		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
@@ -40,7 +41,8 @@ class Factory
 		    CURLOPT_POSTFIELDS => $params
 		));
 
-		$response = json_decode(curl_exec($curl));
+		$response = new \stdClass();
+		$response->data = json_decode(curl_exec($curl));
 		$response->request_info = curl_getinfo($curl);
 
 		curl_close($curl);
