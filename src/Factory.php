@@ -29,7 +29,7 @@ class Factory
 
 		curl_close($curl);
 
-		return json_encode(json_decode($response));
+		return json_decode(json_encode($response));
 	}
 
 	public static function post($url, $params = [])
