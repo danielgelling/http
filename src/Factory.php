@@ -16,10 +16,10 @@ class Factory
 			$url .= '&' . $param . '=' . $value;
 		}
 
-		curl_setopt_array($curl, array(
+		curl_setopt_array($curl, array[
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_URL => $url,
-		));
+		]);
 
 		$response = new \stdClass();
 		$response->response = json_decode(curl_exec($curl));
@@ -34,12 +34,18 @@ class Factory
 	{
 		$curl = curl_init();
 
-		curl_setopt_array($curl, array(
+		$params = json_encode($params);
+
+		curl_setopt_array($curl, [
 		    CURLOPT_RETURNTRANSFER => 1,
 		    CURLOPT_URL => $url,
 		    CURLOPT_POST => 1,
-		    CURLOPT_POSTFIELDS => $params
-		));
+		    CURLOPT_POSTFIELDS => $params,
+		    CURLOPT_HTTPHEADER => [
+		    	'Content-Type: application/json',
+		    	'Content-Length: ' . strlen($params)
+		    ]
+		]);
 
 		$response = new \stdClass();
 		$response->response = json_decode(curl_exec($curl));
