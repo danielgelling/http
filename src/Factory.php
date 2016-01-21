@@ -21,10 +21,15 @@ class Factory
 			CURLOPT_URL => $url,
 		));
 
-		$response = curl_exec($curl);
+
+		$response = array_merge(
+			json_decode(curl_exec($curl), true),
+			curl_getinfo($curl)
+		);
+
 		curl_close($curl);
 
-		return json_decode($response);
+		return json_encode(json_decode($response));
 	}
 
 	public static function post($url, $params = [])
@@ -38,9 +43,13 @@ class Factory
 		    CURLOPT_POSTFIELDS => $params
 		));
 
-		$response = curl_exec($curl);
+		$response = array_merge(
+			json_decode(curl_exec($curl), true),
+			curl_getinfo($curl)
+		);
+
 		curl_close($curl);
 
-		return json_decode($response);
+		return json_encode(json_decode($response));
 	}
 }
