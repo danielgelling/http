@@ -4,7 +4,7 @@ namespace Http;
 
 class Factory
 {
-	public static function get($url, $params = [])
+	public static function get($url, $params = [], $returnPlain = false)
 	{
 		$curl = curl_init();
 
@@ -21,6 +21,9 @@ class Factory
 			CURLOPT_URL => $url,
 		]);
 
+		if($returnPlain)
+			return curl_exec($curl);
+
 		$response = new \stdClass();
 		$response->response = json_decode(curl_exec($curl));
 		$response->request_info = curl_getinfo($curl);
@@ -30,7 +33,7 @@ class Factory
 		return json_decode(json_encode($response));
 	}
 
-	public static function post($url, $params = [])
+	public static function post($url, $params = [], $returnPlain = false)
 	{
 		$curl = curl_init();
 
@@ -46,6 +49,9 @@ class Factory
 		    	'Content-Length: ' . strlen($params)
 		    ]
 		]);
+
+		if($returnPlain)
+			return curl_exec($curl);
 
 		$response = new \stdClass();
 		$response->response = json_decode(curl_exec($curl));
