@@ -62,11 +62,12 @@ class Factory
 		return json_decode(json_encode($response));
 	}
 
-	public static function postRaw($url, $body, $returnPlain = false)
+	public static function postRaw($url, $body, $auth, $returnPlain = false)
 	{
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
+			CURLOPT_USERPWD => $auth,
 		    CURLOPT_RETURNTRANSFER => 1,
 		    CURLOPT_URL => $url,
 		    CURLOPT_POST => 1,
