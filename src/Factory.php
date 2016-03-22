@@ -61,4 +61,32 @@ class Factory
 
 		return json_decode(json_encode($response));
 	}
+
+	public static function postRaw($url, $body, $returnPlain = false)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, [
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => $url,
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => $body,
+		    CURLOPT_HTTPHEADER => [
+		    	'Content-Type: application/json',
+		    	'Accept: application/json; charset=UTF-8',
+		    	'Authorization: Basic bmVvNGo6MQ=='
+		    ]
+		]);
+
+		if($returnPlain)
+			return curl_exec($curl);
+
+		$response = new \stdClass();
+		$response->response = json_decode(curl_exec($curl));
+		$response->request_info = curl_getinfo($curl);
+
+		curl_close($curl);
+
+		return json_decode(json_encode($response));
+	}
 }
